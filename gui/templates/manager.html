@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>⚡ Agentic-DB — Manager</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-lowest": "#0c0e17",
+                        "on-secondary": "#3c0091",
+                        "surface-variant": "#33343e",
+                        "secondary-container": "#571bc1",
+                        "on-error-container": "#ffdad6",
+                        "on-error": "#690005",
+                        "surface-tint": "#b8c3ff",
+                        "on-surface-variant": "#c4c5d9",
+                        "secondary": "#d0bcff",
+                        "inverse-surface": "#e2e1ef",
+                        "surface-bright": "#373943",
+                        "error-container": "#93000a",
+                        "primary-container": "#2e5bff",
+                        "surface-container": "#1d1f29",
+                        "inverse-on-surface": "#2e303a",
+                        "outline-variant": "#434656",
+                        "on-primary-fixed": "#001356",
+                        "surface": "#11131c",
+                        "tertiary-container": "#007d55",
+                        "background": "#11131c",
+                        "on-tertiary-fixed": "#002113",
+                        "tertiary-fixed": "#6ffbbe",
+                        "on-primary-fixed-variant": "#0035be",
+                        "on-tertiary-fixed-variant": "#005236",
+                        "outline": "#8e90a2",
+                        "primary": "#b8c3ff",
+                        "on-primary": "#002388",
+                        "primary-fixed": "#dde1ff",
+                        "secondary-fixed-dim": "#d0bcff",
+                        "surface-container-highest": "#33343e",
+                        "error": "#ffb4ab",
+                        "surface-dim": "#11131c",
+                        "tertiary-fixed-dim": "#4edea3",
+                        "on-background": "#e2e1ef",
+                        "on-secondary-fixed-variant": "#5516be",
+                        "tertiary": "#4edea3",
+                        "on-tertiary": "#003824",
+                        "on-tertiary-container": "#bdffdb",
+                        "inverse-primary": "#124af0",
+                        "on-primary-container": "#efefff",
+                        "surface-container-low": "#191b24",
+                        "on-surface": "#e2e1ef",
+                        "on-secondary-container": "#c4abff",
+                        "primary-fixed-dim": "#b8c3ff",
+                        "on-secondary-fixed": "#23005c",
+                        "surface-container-high": "#282933",
+                        "secondary-fixed": "#e9ddff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xs": "4px",
+                        "xl": "40px",
+                        "sm": "8px",
+                        "md": "16px",
+                        "gutter": "24px",
+                        "unit": "4px",
+                        "lg": "24px",
+                        "margin": "32px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["JetBrains Mono"],
+                        "label-md": ["JetBrains Mono"],
+                        "headline-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "display-xl": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "display-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}?v=2">
+</head>
+<body class="obsidian-bg text-on-surface h-screen overflow-hidden flex flex-col font-body-md selection:bg-primary/30">
+
+    <!-- Subtle background glows -->
+    <div class="fixed top-1/4 -left-20 w-64 h-64 bg-secondary/10 blur-[120px] rounded-full pointer-events-none -z-10"></div>
+    <div class="fixed bottom-1/4 -right-20 w-80 h-80 bg-tertiary/10 blur-[120px] rounded-full pointer-events-none -z-10"></div>
+
+    <!-- TopAppBar -->
+    <header class="flex-shrink-0 z-50 bg-surface/70 backdrop-blur-xl border-b border-white/10 shadow-lg shadow-secondary/5 flex justify-between items-center w-full px-gutter h-16">
+        <div class="flex items-center gap-3">
+            <span class="material-symbols-outlined text-secondary" data-icon="analytics">analytics</span>
+            <h1 class="text-headline-md font-headline-md font-bold tracking-tight text-white">
+                Agentic-DB
+            </h1>
+            <span class="px-2.5 py-0.5 rounded-full bg-secondary-container/20 text-secondary text-label-sm font-label-sm border border-secondary/20">
+                Manager
+            </span>
+        </div>
+        <div class="flex items-center gap-4">
+            <form action="/logout" method="POST" class="m-0">
+                <button type="submit" class="flex items-center gap-2 px-3 py-1.5 rounded-lg text-label-sm font-label-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all">
+                    <span class="material-symbols-outlined text-[18px]" data-icon="logout">logout</span>
+                    {% if username %}Sign out ({{ username }}){% else %}Sign out{% endif %}
+                </button>
+            </form>
+            <div class="flex items-center gap-2 bg-surface-container-high px-3 py-1 rounded-full border border-white/5">
+                <span class="w-1.5 h-1.5 rounded-full bg-tertiary status-led"></span>
+                <span class="text-label-sm font-label-sm text-on-surface-variant">Read Only</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Application Area — full width, no sidebar -->
+    <div class="flex-1 flex overflow-hidden">
+        
+        <!-- Chat Column (full width) -->
+        <main class="flex-1 flex flex-col relative">
+            <!-- Chat Display Area (Scrollable) -->
+            <div id="chatDisplay" class="flex-1 overflow-y-auto px-4 py-8 space-y-8 flex flex-col items-center">
+                <!-- Messages will be injected here by manager.js -->
+                <div class="flex justify-center w-full mt-2">
+                    <p class="text-sm font-medium text-tertiary">
+                        {{ db_name }} &middot; Read-only mode &middot; Type a message to explore your data.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Chat Input Section (Pinned to bottom of chat area) -->
+            <div class="flex-shrink-0 p-4 bg-gradient-to-t from-background via-background/90 to-transparent">
+                <div class="max-w-3xl mx-auto glass-card rounded-2xl p-2 border-secondary/10 shadow-2xl shadow-black/50">
+                    <form id="chatForm" class="flex items-center gap-2 w-full m-0">
+                        <button type="button" class="p-3 text-outline hover:text-secondary transition-colors">
+                            <span class="material-symbols-outlined" data-icon="attach_file">attach_file</span>
+                        </button>
+                        <input id="msgInput" class="flex-1 bg-transparent border-none focus:ring-0 text-body-md text-on-surface placeholder:text-outline/60 font-label-md" placeholder="Ask about your data, trends, insights..." type="text" autocomplete="off" />
+                        <button id="sendBtn" type="submit" class="w-10 h-10 rounded-xl bg-gradient-to-br from-secondary to-tertiary text-on-primary flex items-center justify-center shadow-lg shadow-secondary/20 active:scale-90 transition-transform disabled:opacity-50 disabled:active:scale-100">
+                            <span class="material-symbols-outlined" data-icon="send">send</span>
+                        </button>
+                    </form>
+                </div>
+                <div class="max-w-3xl mx-auto mt-2 flex justify-center">
+                    <span class="text-label-sm font-label-sm text-outline/50">Read-only mode — database modifications are not permitted</span>
+                </div>
+            </div>
+        </main>
+
+    </div>
+
+    <script src="{{ url_for('static', filename='artifacts.js') }}?v=2"></script>
+    <script src="{{ url_for('static', filename='manager.js') }}?v=2"></script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+/* Extracted from Stitch AI HTML */
+.glass-card {
+    backdrop-filter: blur(16px);
+    background-color: rgba(22, 22, 24, 0.7);
+    border: 1px solid;
+    border-image-source: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 100%);
+    border-image-slice: 1;
+}
+.inner-glow {
+    box-shadow: inset 0 0 20px rgba(184, 195, 255, 0.05);
+}
+.status-led {
+    box-shadow: 0 0 8px #4edea3;
+}
+.obsidian-bg {
+    background-color: #0c0e17;
+    background-image: radial-gradient(circle at 50% -20%, rgba(46, 91, 255, 0.15) 0%, transparent 50%);
+}
+
+.no-borders {
+    border: none !important;
+}
+
+/* Markdown Styling for Agent Messages */
+.markdown-body {
+    font-family: inherit;
+    line-height: 1.6;
+}
+
+.markdown-body p {
+    margin-bottom: 1em;
+}
+.markdown-body p:last-child {
+    margin-bottom: 0;
+}
+
+.markdown-body code {
+    background-color: rgba(0,0,0,0.3);
+    padding: 0.2em 0.4em;
+    border-radius: 4px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9em;
+    color: #b8c3ff; /* primary color */
+}
+
+.markdown-body pre {
+    background-color: rgba(0,0,0,0.5);
+    padding: 1em;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 1em 0;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+.markdown-body pre code {
+    background-color: transparent;
+    padding: 0;
+    color: inherit;
+}
+
+.markdown-body ul, .markdown-body ol {
+    margin-top: 0.5em;
+    margin-bottom: 1em;
+    padding-left: 1.5em;
+}
+.markdown-body ul { list-style-type: disc; }
+.markdown-body ol { list-style-type: decimal; }
+
+.markdown-body strong {
+    font-weight: 600;
+    color: #fff;
+}
+
+/* Markdown Table Styling */
+.markdown-body table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1em 0;
+    font-size: 0.9em;
+}
+
+.markdown-body th, .markdown-body td {
+    padding: 8px 12px;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.markdown-body th {
+    background-color: rgba(255,255,255,0.05);
+    font-weight: 600;
+    text-align: left;
+    color: #b8c3ff;
+}
+
+.markdown-body tr:nth-child(even) {
+    background-color: rgba(255,255,255,0.02);
+}
+
+/* Custom Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background-color: rgba(184, 195, 255, 0.1); /* Using surface-tint/primary color with low opacity */
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(184, 195, 255, 0.3);
+}
+::-webkit-scrollbar-corner {
+    background: transparent;
+}

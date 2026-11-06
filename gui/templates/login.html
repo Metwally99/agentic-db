@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Agentic-DB - Sign in</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-lowest": "#0c0e17",
+                        "on-secondary": "#3c0091",
+                        "surface-variant": "#33343e",
+                        "secondary-container": "#571bc1",
+                        "on-error-container": "#ffdad6",
+                        "on-error": "#690005",
+                        "surface-tint": "#b8c3ff",
+                        "on-surface-variant": "#c4c5d9",
+                        "secondary": "#d0bcff",
+                        "inverse-surface": "#e2e1ef",
+                        "surface-bright": "#373943",
+                        "error-container": "#93000a",
+                        "primary-container": "#2e5bff",
+                        "surface-container": "#1d1f29",
+                        "inverse-on-surface": "#2e303a",
+                        "outline-variant": "#434656",
+                        "on-primary-fixed": "#001356",
+                        "surface": "#11131c",
+                        "tertiary-container": "#007d55",
+                        "background": "#11131c",
+                        "on-tertiary-fixed": "#002113",
+                        "tertiary-fixed": "#6ffbbe",
+                        "on-primary-fixed-variant": "#0035be",
+                        "on-tertiary-fixed-variant": "#005236",
+                        "outline": "#8e90a2",
+                        "primary": "#b8c3ff",
+                        "on-primary": "#002388",
+                        "primary-fixed": "#dde1ff",
+                        "secondary-fixed-dim": "#d0bcff",
+                        "surface-container-highest": "#33343e",
+                        "error": "#ffb4ab",
+                        "surface-dim": "#11131c",
+                        "tertiary-fixed-dim": "#4edea3",
+                        "on-background": "#e2e1ef",
+                        "on-secondary-fixed-variant": "#5516be",
+                        "tertiary": "#4edea3",
+                        "on-tertiary": "#003824",
+                        "on-tertiary-container": "#bdffdb",
+                        "inverse-primary": "#124af0",
+                        "on-primary-container": "#efefff",
+                        "surface-container-low": "#191b24",
+                        "on-surface": "#e2e1ef",
+                        "on-secondary-container": "#c4abff",
+                        "primary-fixed-dim": "#b8c3ff",
+                        "on-secondary-fixed": "#23005c",
+                        "surface-container-high": "#282933",
+                        "secondary-fixed": "#e9ddff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xs": "4px",
+                        "xl": "40px",
+                        "sm": "8px",
+                        "md": "16px",
+                        "gutter": "24px",
+                        "unit": "4px",
+                        "lg": "24px",
+                        "margin": "32px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["JetBrains Mono"],
+                        "label-md": ["JetBrains Mono"],
+                        "headline-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "display-xl": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "display-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}?v=3">
+    <style>
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in-up { animation: fadeInUp 0.6s ease forwards; }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+        .float-anim { animation: float 6s ease-in-out infinite; }
+    </style>
+</head>
+<body class="obsidian-bg text-on-surface h-screen overflow-hidden flex flex-col font-body-md selection:bg-primary/30">
+
+    <div class="fixed top-1/4 -left-20 w-64 h-64 bg-primary/10 blur-[120px] rounded-full pointer-events-none -z-10"></div>
+    <div class="fixed bottom-1/4 -right-20 w-80 h-80 bg-secondary/10 blur-[120px] rounded-full pointer-events-none -z-10"></div>
+
+    <div class="flex-1 flex items-center justify-center p-8">
+        <div class="max-w-md w-full">
+
+            <!-- Logo & title -->
+            <div class="mb-10 text-center fade-in-up">
+                <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-primary-container to-secondary-container mb-6 shadow-2xl shadow-primary/20 float-anim">
+                    <span class="material-symbols-outlined text-on-primary-container text-4xl" data-icon="database">database</span>
+                </div>
+                <h1 class="text-display-xl font-display-xl font-bold tracking-tight text-white mb-3">
+                    Agentic-DB
+                </h1>
+                <p class="text-body-md text-on-surface-variant">Sign in to continue</p>
+            </div>
+
+            <!-- Login form -->
+            <form method="POST" action="{{ url_for('login') }}" class="glass-card rounded-2xl p-8 space-y-5 fade-in-up" style="border: 1px solid rgba(255,255,255,0.08);">
+
+                {% if error %}
+                <div class="px-4 py-3 rounded-lg bg-error-container/30 border border-error/30 flex items-center gap-2">
+                    <span class="material-symbols-outlined text-error text-[18px]" data-icon="error">error</span>
+                    <span class="text-label-md font-label-md text-error">{{ error }}</span>
+                </div>
+                {% endif %}
+
+                <div>
+                    <label for="username" class="block text-label-sm font-label-sm text-on-surface-variant mb-2 uppercase tracking-wider">Username</label>
+                    <input
+                        id="username"
+                        name="username"
+                        type="text"
+                        autocomplete="username"
+                        required
+                        autofocus
+                        class="w-full px-4 py-3 rounded-xl bg-surface-container border border-white/10 text-on-surface placeholder:text-outline/60 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all"
+                        placeholder="manager or business"
+                        value="{{ username or '' }}"
+                    />
+                </div>
+
+                <div>
+                    <label for="password" class="block text-label-sm font-label-sm text-on-surface-variant mb-2 uppercase tracking-wider">Password</label>
+                    <input
+                        id="password"
+                        name="password"
+                        type="password"
+                        autocomplete="current-password"
+                        required
+                        class="w-full px-4 py-3 rounded-xl bg-surface-container border border-white/10 text-on-surface placeholder:text-outline/60 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all"
+                        placeholder="Your password"
+                    />
+                </div>
+
+                <button
+                    type="submit"
+                    class="w-full py-3 rounded-xl bg-gradient-to-r from-primary to-secondary text-on-primary font-bold text-label-md font-label-md shadow-lg shadow-primary/20 active:scale-95 transition-transform flex items-center justify-center gap-2"
+                >
+                    <span>Sign in</span>
+                    <span class="material-symbols-outlined text-[18px]" data-icon="arrow_forward">arrow_forward</span>
+                </button>
+
+                <p class="text-center text-label-sm font-label-sm text-outline pt-2">
+                    Demo accounts:
+                    <span class="text-on-surface-variant">manager</span> /
+                    <span class="text-on-surface-variant">business</span>
+                </p>
+            </form>
+
+            <div class="mt-8 text-center">
+                <div class="inline-flex items-center gap-2 text-outline">
+                    <span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+                    <span class="text-label-sm font-label-sm">{{ db_name }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

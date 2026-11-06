@@ -1,0 +1,6 @@
+openai>=1.0.0
+azure-ai-inference>=1.0.0b8
+requests>=2.31.0
+python-dotenv>=1.0.0
+PyMySQL>=1.1.0
+sqlparse>=0.4
